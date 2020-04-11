@@ -1,0 +1,12 @@
+import imageio
+
+dir_path = 'volumetric-dicom/Lung/'
+vol_arr = imageio.volread(dir_path, 'DICOM')
+vol_arr.shape
+
+#make room for the channel dimension using .unsqueeze
+vol = torch.from_numpy(vol_arr).float()
+vol = torch.transpose(vol, 0, 2)
+vol = torch.unsqueeze(vol, 0)
+
+vol.shape
